@@ -17,8 +17,8 @@ connection = None
 def connect_to_mysql(host, user, password, database):
     try:
         connection = connect(
-            host=host,
             user=user,
+            host=host,
             password=password,
             database=database
         )
@@ -321,126 +321,136 @@ def add_new_employee(connection):
     if connection is None:
         print("No connection to MySQL database.")
         return
-
     try:
         cursor = connection.cursor()
-        # Get employee details from user input
-        name = input("Enter name: ")
-        if not name:
-            print("Name cannot be empty.")
-            return
-        elif not validate_name(name):
-            return
-
-        age = input("Enter age: ")
-        if not age:
-            print("Age cannot be empty.")
-            return
-        elif not validate_age(age):
-            return
-
-        address = input("Enter address: ")
-        if not address:
-            print("Address cannot be empty.")
-            return
-        elif not validate_address(address):
-            return
-
-        mobile_number = input("Enter mobile number: ")
-        if not mobile_number:
-            print("Mobile number cannot be empty.")
-            return
-        elif not validate_mobile_number(mobile_number):
-            return
-
-        gender = input("Enter gender: ")
-        if not gender:
-            print("Gender cannot be empty.")
-            return
-        elif not validate_gender(gender):
-            return
-
-        education_details = input("Enter education details: ")
-        if not education_details:
-            print("Education details cannot be empty.")
-            return
-        elif not validate_education_details(education_details):
-            return
-
-        salary = input("Enter salary: ")
-        if not salary:
-            print("Salary cannot be empty.")
-            return
-        elif not validate_salary(salary):
-            return
-
-        doj = input("Enter date of joining (YYYY-MM-DD): ")
-        if not doj:
-            print("Date of joining cannot be empty.")
-            return
-        elif not validate_date_of_joining(doj):
-            return
-
-        department = input("Enter department: ")
-        if not department:
-            print("Department cannot be empty.")
-            return
-        elif not validate_department(department):
-            return
-
-        position = input("Enter position: ")
-        if not position:
-            print("Position cannot be empty.")
-            return
-        elif not validate_position(position):
-            return
-
-        project_name = input("Enter project name: ")
-        if not project_name:
-            print("Project name cannot be empty.")
-            return
-        elif not validate_project_name(project_name):
-            return
-
-        tech_stack = input("Enter tech stack: ")
-        if not tech_stack:
-            print("Tech stack cannot be empty.")
-            return
-        elif not validate_tech_stack(tech_stack):
-            return
-
-        annual_salary = input("Enter annual salary: ")
-        if not annual_salary:
-            print("Annual salary cannot be empty.")
-            return
-        elif not validate_annual_salary(annual_salary):
-            return
-
-        manager = input("Enter Manager name: ")
-        if not manager:
-            print("Manager name cannot be empty.")
-            return
-        elif not validate_manager(manager):
-            return
-
+        # Loop for each input section to handle validation and retries
+        while True:
+            name = input("Enter name: ")
+            if not name:
+                print("Name cannot be empty.")
+            elif not validate_name(name):
+                continue
+            else:
+                break
+        while True:
+            age = input("Enter age: ")
+            if not age:
+                print("Age cannot be empty.")
+            elif not validate_age(age):
+                continue
+            else:
+                break
+        while True:
+            address = input("Enter address: ")
+            if not address:
+                print("Address cannot be empty.")
+            elif not validate_address(address):
+                continue
+            else:
+                break
+        while True:
+            mobile_number = input("Enter mobile number: ")
+            if not mobile_number:
+                print("Mobile number cannot be empty.")
+            elif not validate_mobile_number(mobile_number):
+                continue
+            else:
+                break
+        while True:
+            gender = input("Enter gender: ")
+            if not gender:
+                print("Gender cannot be empty.")
+            elif not validate_gender(gender):
+                continue
+            else:
+                break
+        while True:
+            education_details = input("Enter education details: ")
+            if not education_details:
+                print("Education details cannot be empty.")
+            elif not validate_education_details(education_details):
+                continue
+            else:
+                break
+        while True:
+            salary = input("Enter salary: ")
+            if not salary:
+                print("Salary cannot be empty.")
+            elif not validate_salary(salary):
+                continue
+            else:
+                break
+        while True:
+            doj = input("Enter date of joining (YYYY-MM-DD): ")
+            if not doj:
+                print("Date of joining cannot be empty.")
+            elif not validate_date_of_joining(doj):
+                continue
+            else:
+                break
+        while True:
+            department = input("Enter department: ")
+            if not department:
+                print("Department cannot be empty.")
+            elif not validate_department(department):
+                continue
+            else:
+                break
+        while True:
+            position = input("Enter position: ")
+            if not position:
+                print("Position cannot be empty.")
+            elif not validate_position(position):
+                continue
+            else:
+                break
+        while True:
+            project_name = input("Enter project name: ")
+            if not project_name:
+                print("Project name cannot be empty.")
+            elif not validate_project_name(project_name):
+                continue
+            else:
+                break
+        while True:
+            tech_stack = input("Enter tech stack: ")
+            if not tech_stack:
+                print("Tech stack cannot be empty.")
+            elif not validate_tech_stack(tech_stack):
+                continue
+            else:
+                break
+        while True:
+            annual_salary = input("Enter annual salary: ")
+            if not annual_salary:
+                print("Annual salary cannot be empty.")
+            elif not validate_annual_salary(annual_salary):
+                continue
+            else:
+                break
+        while True:
+            manager = input("Enter manager name: ")
+            if not manager:
+                print("Manager name cannot be empty.")
+            elif not validate_manager(manager):
+                continue
+            else:
+                break
         # Insert new employee data into MySQL table
         cursor.execute("""
-            INSERT INTO emss1 (Name, Age, Address, Mobile_Number, Gender, Education_Details, Salary, DOJ, Department, Position, Project_Name, Tech_Stack, Annual_Salary,manager)
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s)
+            INSERT INTO emss1 (Name, Age, Address, Mobile_Number, Gender, Education_Details, Salary, DOJ, Department, Position, Project_Name, Tech_Stack, Annual_Salary, Manager)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             name, age, address, mobile_number, gender, education_details, salary, doj, department, position,
             project_name, tech_stack, annual_salary, manager))
-
         connection.commit()
         print("New employee added successfully")
-
-    except Error as e:
+    except Exception as e:
         print(f"Error adding new employee: {e}")
-        # Handle the error appropriately
-
     finally:
         if 'cursor' in locals() and cursor is not None:
             cursor.close()
+
 # employee_id
 def find_employee_id_by_name(connection, employee_name):
     cursor = connection.cursor()
@@ -1409,13 +1419,14 @@ def import_employee_data(connection, file_path):
 
 
 def main():
-    host = "127.0.0.1"
+    host = "localhost"  # Assuming MySQL server is running on localhost
+     # Default MySQL port
     user = "root"
-    password = "Nayan@12345"
+    password = "nineleaps"
     database = "new"
 
     # Connect to MySQL database
-    connection = connect_to_mysql(host, user, password, database)
+    connection = connect_to_mysql(host=host, user=user, password=password, database=database)
     if connection:
         create_table(connection)
         insert_random_data(connection, num_records=100)
@@ -1504,4 +1515,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
